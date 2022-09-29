@@ -47,16 +47,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormWorkWithComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWorkWithComponents.Designer.cs">
+      <DependentUpon>FormWorkWithComponents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkWithComponents.resx">
+      <DependentUpon>FormWorkWithComponents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +91,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryComponentsKurmyza\ClassLibraryComponentsKurmyza.csproj">
+      <Project>{2ebb7d11-f4aa-45ab-ac40-292f34cc5513}</Project>
+      <Name>ClassLibraryComponentsKurmyza</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibraryControlsKurmyza\ClassLibraryControlsKurmyza.csproj">
       <Project>{822e1ae8-95bc-4ef0-ab55-2b39c7b50b4d}</Project>
       <Name>ClassLibraryControlsKurmyza</Name>

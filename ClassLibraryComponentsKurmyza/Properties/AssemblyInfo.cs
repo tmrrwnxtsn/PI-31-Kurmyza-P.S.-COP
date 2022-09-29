@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("ClassLibraryControlsKurmyza")]
+[assembly: AssemblyTitle("ClassLibraryComponentsKurmyza")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ClassLibraryControlsKurmyza")]
+[assembly: AssemblyProduct("ClassLibraryComponentsKurmyza")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий идентификатор GUID представляет идентификатор typelib, если этот проект доступен через COM
-[assembly: Guid("822e1ae8-95bc-4ef0-ab55-2b39c7b50b4d")]
+[assembly: Guid("2ebb7d11-f4aa-45ab-ac40-292f34cc5513")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

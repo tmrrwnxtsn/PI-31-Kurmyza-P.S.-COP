@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COPTestView;
+using System;
 using System.Windows.Forms;
 
 namespace ControlsView
@@ -13,7 +14,7 @@ namespace ControlsView
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new FormWorkWithComponents());
         }
     }
 }
