@@ -9,32 +9,35 @@ namespace COPTestView
     public partial class FormWorkWithComponents : Form
     {
         private readonly string[] _defaultText = {
-            "Стартовый текст для проверки работоспособности.",
-            "Абзац кончается там, где стоит знак точки."
+            "По заданию будет 3 не визуальных компонента, которые должны использоваться на формах.",
+            "Все компоненты отвечают за создание документов разного формата (word, excel или pdf)."
         };
 
-        private List<CellPdfTable> rowTablePdfOne;
-        private List<CellPdfTable> rowTablePdfTwo;
-        private List<Employee> employees;
+        private readonly List<CellPdfTable> rowTablePdfOne;
+        
+        private readonly List<CellPdfTable> rowTablePdfTwo;
+        
+        private readonly List<Employee> employees;
 
         public FormWorkWithComponents()
         {
             InitializeComponent();
-            textBoxContextText.Text = string.Concat(_defaultText);
+            textBoxContextText.Text = string.Join("\n", _defaultText);
 
             employees = new List<Employee>
             {
-                new Employee(){
-                Id = 1,
-                Status = false,
-                FirstName = "Иван",
-                SecondName = "Иванов",
-                Age = 34,
-                Children = false,
-                Car = true,
-                Subdivision = "Департамент",
-                Position = "Инженер",
-                Prize = 2000.1
+                new Employee()
+                {
+                    Id = 1,
+                    Status = false,
+                    FirstName = "Иван",
+                    SecondName = "Иванов",
+                    Age = 34,
+                    Children = false,
+                    Car = true,
+                    Subdivision = "Департамент",
+                    Position = "Инженер",
+                    Prize = 2000.1
                 },
                 new Employee()
                 {
@@ -93,7 +96,7 @@ namespace COPTestView
             {
                 new CellPdfTable()
                 {
-                    Name = "Id",
+                    Name = "Идент.",
                     ColumnWidth = "1cm",
                     PropertyName = "Id"
                 },
@@ -173,9 +176,11 @@ namespace COPTestView
                 return;
             }
 
-            var fbd = new SaveFileDialog();
-            fbd.FileName = "pdfContent.pdf";
-            fbd.Filter = "pdf file | *.pdf";
+            var fbd = new SaveFileDialog
+            {
+                FileName = "text.pdf",
+                Filter = "pdf file | *.pdf"
+            };
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 if (componentContextBigText.CreateDocument(new ContentParameters()
@@ -194,7 +199,7 @@ namespace COPTestView
             }
         }
 
-
+        [Obsolete]
         private void buttonCreateTablePdf_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxTableTitle.Text))
@@ -202,9 +207,11 @@ namespace COPTestView
                 MessageBox.Show("Введите заголовок", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var fbd = new SaveFileDialog();
-            fbd.FileName = "pdfTable.pdf";
-            fbd.Filter = "pdf file | *.pdf";
+            var fbd = new SaveFileDialog
+            {
+                FileName = "table.pdf",
+                Filter = "pdf file | *.pdf"
+            };
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 if (componentTablePdf.CreateDocument(new TablePdfParameters<Employee>()
@@ -235,9 +242,11 @@ namespace COPTestView
                 MessageBox.Show("Введите заголовоки документа и диаграммы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var fbd = new SaveFileDialog();
-            fbd.FileName = "pdfDiagram.pdf";
-            fbd.Filter = "pdf file | *.pdf";
+            var fbd = new SaveFileDialog
+            {
+                FileName = "diagram.pdf",
+                Filter = "pdf file | *.pdf"
+            };
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 if (componentDiagramPdf.CreateDocument(new DiagramPdfParameters
@@ -245,7 +254,7 @@ namespace COPTestView
                     Path = fbd.FileName,
                     Title = textBoxDiagramPdfDocTitle.Text,
                     DiagramName = textBoxDiagramPdfDiagramName.Text,
-                    ChartAreaLegend = ChartAreaLegend.Bottom,
+                    ChartAreaLegend = ChartAreaLegend.Top,
                     XAxisValues = new[] { "1", "2", "3", "4", "5" },
                     Series = new List<Series>
                     {

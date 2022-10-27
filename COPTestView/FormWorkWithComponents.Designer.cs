@@ -46,7 +46,7 @@ namespace COPTestView
             this.labelDiagramPdfDocTitle = new System.Windows.Forms.Label();
             this.textBoxDiagramPdfDocTitle = new System.Windows.Forms.TextBox();
             this.buttonCreateDiagramPdf = new System.Windows.Forms.Button();
-            this.componentContextBigText = new ClassLibraryComponentsKurmyza.ComponentContextBigText(this.components);
+            this.componentContextBigText = new ClassLibraryComponentsKurmyza.ComponentTextPdf(this.components);
             this.componentTablePdf = new ClassLibraryComponentsKurmyza.ComponentTablePdf(this.components);
             this.componentDiagramPdf = new ClassLibraryComponentsKurmyza.ComponentDiagramPdf(this.components);
             this.groupBoxContentPdf.SuspendLayout();
@@ -57,7 +57,7 @@ namespace COPTestView
             // textBoxContextText
             // 
             this.textBoxContextText.Location = new System.Drawing.Point(8, 96);
-            this.textBoxContextText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxContextText.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxContextText.Multiline = true;
             this.textBoxContextText.Name = "textBoxContextText";
             this.textBoxContextText.Size = new System.Drawing.Size(333, 169);
@@ -65,10 +65,10 @@ namespace COPTestView
             // 
             // buttonCreatePdfContext
             // 
-            this.buttonCreatePdfContext.Location = new System.Drawing.Point(105, 273);
-            this.buttonCreatePdfContext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreatePdfContext.Location = new System.Drawing.Point(77, 273);
+            this.buttonCreatePdfContext.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCreatePdfContext.Name = "buttonCreatePdfContext";
-            this.buttonCreatePdfContext.Size = new System.Drawing.Size(151, 36);
+            this.buttonCreatePdfContext.Size = new System.Drawing.Size(179, 36);
             this.buttonCreatePdfContext.TabIndex = 1;
             this.buttonCreatePdfContext.Text = "Сгенерировать PDF";
             this.buttonCreatePdfContext.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@ namespace COPTestView
             // textBoxContextTitle
             // 
             this.textBoxContextTitle.Location = new System.Drawing.Point(8, 48);
-            this.textBoxContextTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxContextTitle.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxContextTitle.Name = "textBoxContextTitle";
             this.textBoxContextTitle.Size = new System.Drawing.Size(333, 22);
             this.textBoxContextTitle.TabIndex = 2;
@@ -110,9 +110,9 @@ namespace COPTestView
             this.groupBoxContentPdf.Controls.Add(this.buttonCreatePdfContext);
             this.groupBoxContentPdf.Controls.Add(this.textBoxContextText);
             this.groupBoxContentPdf.Location = new System.Drawing.Point(13, 13);
-            this.groupBoxContentPdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxContentPdf.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxContentPdf.Name = "groupBoxContentPdf";
-            this.groupBoxContentPdf.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxContentPdf.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxContentPdf.Size = new System.Drawing.Size(351, 325);
             this.groupBoxContentPdf.TabIndex = 5;
             this.groupBoxContentPdf.TabStop = false;
@@ -124,9 +124,9 @@ namespace COPTestView
             this.groupBoxTablePdf.Controls.Add(this.textBoxTableTitle);
             this.groupBoxTablePdf.Controls.Add(this.buttonCreateTablePdf);
             this.groupBoxTablePdf.Location = new System.Drawing.Point(372, 13);
-            this.groupBoxTablePdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxTablePdf.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxTablePdf.Name = "groupBoxTablePdf";
-            this.groupBoxTablePdf.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxTablePdf.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxTablePdf.Size = new System.Drawing.Size(351, 134);
             this.groupBoxTablePdf.TabIndex = 6;
             this.groupBoxTablePdf.TabStop = false;
@@ -145,7 +145,7 @@ namespace COPTestView
             // textBoxTableTitle
             // 
             this.textBoxTableTitle.Location = new System.Drawing.Point(8, 48);
-            this.textBoxTableTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTableTitle.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTableTitle.Name = "textBoxTableTitle";
             this.textBoxTableTitle.Size = new System.Drawing.Size(333, 22);
             this.textBoxTableTitle.TabIndex = 2;
@@ -153,7 +153,7 @@ namespace COPTestView
             // buttonCreateTablePdf
             // 
             this.buttonCreateTablePdf.Location = new System.Drawing.Point(85, 78);
-            this.buttonCreateTablePdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreateTablePdf.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCreateTablePdf.Name = "buttonCreateTablePdf";
             this.buttonCreateTablePdf.Size = new System.Drawing.Size(170, 36);
             this.buttonCreateTablePdf.TabIndex = 1;
@@ -169,9 +169,9 @@ namespace COPTestView
             this.groupBoxDiagramPdf.Controls.Add(this.textBoxDiagramPdfDocTitle);
             this.groupBoxDiagramPdf.Controls.Add(this.buttonCreateDiagramPdf);
             this.groupBoxDiagramPdf.Location = new System.Drawing.Point(732, 13);
-            this.groupBoxDiagramPdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxDiagramPdf.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxDiagramPdf.Name = "groupBoxDiagramPdf";
-            this.groupBoxDiagramPdf.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxDiagramPdf.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxDiagramPdf.Size = new System.Drawing.Size(351, 183);
             this.groupBoxDiagramPdf.TabIndex = 7;
             this.groupBoxDiagramPdf.TabStop = false;
@@ -190,7 +190,7 @@ namespace COPTestView
             // textBoxDiagramPdfDiagramName
             // 
             this.textBoxDiagramPdfDiagramName.Location = new System.Drawing.Point(8, 100);
-            this.textBoxDiagramPdfDiagramName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDiagramPdfDiagramName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDiagramPdfDiagramName.Name = "textBoxDiagramPdfDiagramName";
             this.textBoxDiagramPdfDiagramName.Size = new System.Drawing.Size(333, 22);
             this.textBoxDiagramPdfDiagramName.TabIndex = 5;
@@ -208,7 +208,7 @@ namespace COPTestView
             // textBoxDiagramPdfDocTitle
             // 
             this.textBoxDiagramPdfDocTitle.Location = new System.Drawing.Point(8, 48);
-            this.textBoxDiagramPdfDocTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDiagramPdfDocTitle.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDiagramPdfDocTitle.Name = "textBoxDiagramPdfDocTitle";
             this.textBoxDiagramPdfDocTitle.Size = new System.Drawing.Size(333, 22);
             this.textBoxDiagramPdfDocTitle.TabIndex = 2;
@@ -216,7 +216,7 @@ namespace COPTestView
             // buttonCreateDiagramPdf
             // 
             this.buttonCreateDiagramPdf.Location = new System.Drawing.Point(81, 130);
-            this.buttonCreateDiagramPdf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreateDiagramPdf.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCreateDiagramPdf.Name = "buttonCreateDiagramPdf";
             this.buttonCreateDiagramPdf.Size = new System.Drawing.Size(185, 36);
             this.buttonCreateDiagramPdf.TabIndex = 1;
@@ -232,7 +232,7 @@ namespace COPTestView
             this.Controls.Add(this.groupBoxDiagramPdf);
             this.Controls.Add(this.groupBoxTablePdf);
             this.Controls.Add(this.groupBoxContentPdf);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormWorkWithComponents";
             this.Text = "Главное окно";
             this.groupBoxContentPdf.ResumeLayout(false);
@@ -253,7 +253,7 @@ namespace COPTestView
         private System.Windows.Forms.Label labelContentText;
         private System.Windows.Forms.Label labelContentTitle;
         private System.Windows.Forms.GroupBox groupBoxContentPdf;
-        private ClassLibraryComponentsKurmyza.ComponentContextBigText componentContextBigText;
+        private ClassLibraryComponentsKurmyza.ComponentTextPdf componentContextBigText;
         private System.Windows.Forms.GroupBox groupBoxTablePdf;
         private System.Windows.Forms.Label labelTableTitle;
         private System.Windows.Forms.TextBox textBoxTableTitle;

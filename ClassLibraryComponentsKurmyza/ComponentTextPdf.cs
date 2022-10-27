@@ -7,20 +7,21 @@ using System.Text.RegularExpressions;
 
 namespace ClassLibraryComponentsKurmyza
 {
-    public partial class ComponentContextBigText : Component
+    public partial class ComponentTextPdf : Component
     {
         private const int WidthTextLimit = 50;
+        
         private ErrorContentBigTextMessage _errorMessage = ErrorContentBigTextMessage.Ошибок_нет;
 
-        [Category("ComponentPdfDiagram"), Description("Содержание ошибки")]
+        [Category("ComponentTextPdf"), Description("Содержание ошибки")]
         public string ErrorMessageString { get => _errorMessage.ToString(); }
 
-        public ComponentContextBigText()
+        public ComponentTextPdf()
         {
             InitializeComponent();
         }
 
-        public ComponentContextBigText(IContainer container)
+        public ComponentTextPdf(IContainer container)
         {
             container.Add(this);
             InitializeComponent();

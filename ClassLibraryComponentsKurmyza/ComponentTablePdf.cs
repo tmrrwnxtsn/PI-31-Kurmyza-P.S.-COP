@@ -12,9 +12,10 @@ namespace ClassLibraryComponentsKurmyza
     public partial class ComponentTablePdf : Component
     {
         private ErrorTablePdfMessage _errorMessage = ErrorTablePdfMessage.Ошибок_нет;
+        
         private Dictionary<string, int> _propertyInfos;
 
-        [Category("ComponentPdfDiagram"), Description("Содержание ошибки")]
+        [Category("ComponentTablePdf"), Description("Содержание ошибки")]
         public string ErrorMessageString => _errorMessage.ToString();
 
         public ComponentTablePdf()
@@ -139,10 +140,10 @@ namespace ClassLibraryComponentsKurmyza
             currentIndex = 0;
             for (var i = 0; i < countColumnsTop; i++)
             {
-                var highCurrentCell = table.Rows[0].Cells[i];
+                var topCurrentCell = table.Rows[0].Cells[i];
                 var currentCell = table.Rows[1].Cells[i];
 
-                countMerged = highCurrentCell.MergeRight > 0 ? highCurrentCell.MergeRight + 1 : countMerged;
+                countMerged = topCurrentCell.MergeRight > 0 ? topCurrentCell.MergeRight + 1 : countMerged;
                 if (countMerged != 0)
                 {
                     if (string.IsNullOrEmpty(secondRow[currentIndex].Name))
@@ -163,7 +164,7 @@ namespace ClassLibraryComponentsKurmyza
                 }
                 else
                 {
-                    highCurrentCell.MergeDown = 1;
+                    topCurrentCell.MergeDown = 1;
                 }
             }
             return true;

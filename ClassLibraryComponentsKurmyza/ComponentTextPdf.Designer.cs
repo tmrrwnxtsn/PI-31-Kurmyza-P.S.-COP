@@ -1,7 +1,7 @@
 ﻿
 namespace ClassLibraryComponentsKurmyza
 {
-    partial class ComponentContextBigText
+    partial class ComponentTextPdf
     {
         /// <summary>
         /// Обязательная переменная конструктора.
