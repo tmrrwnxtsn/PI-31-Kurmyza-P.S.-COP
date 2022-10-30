@@ -12,10 +12,9 @@ namespace ClassLibraryComponentsKurmyza
     public partial class ComponentTablePdf : Component
     {
         private ErrorTablePdfMessage _errorMessage = ErrorTablePdfMessage.Ошибок_нет;
-        
         private Dictionary<string, int> _propertyInfos;
 
-        [Category("ComponentTablePdf"), Description("Содержание ошибки")]
+        [Category("ComponentPdfDiagram"), Description("Содержание ошибки")]
         public string ErrorMessageString => _errorMessage.ToString();
 
         public ComponentTablePdf()
@@ -140,10 +139,10 @@ namespace ClassLibraryComponentsKurmyza
             currentIndex = 0;
             for (var i = 0; i < countColumnsTop; i++)
             {
-                var topCurrentCell = table.Rows[0].Cells[i];
+                var highCurrentCell = table.Rows[0].Cells[i];
                 var currentCell = table.Rows[1].Cells[i];
 
-                countMerged = topCurrentCell.MergeRight > 0 ? topCurrentCell.MergeRight + 1 : countMerged;
+                countMerged = highCurrentCell.MergeRight > 0 ? highCurrentCell.MergeRight + 1 : countMerged;
                 if (countMerged != 0)
                 {
                     if (string.IsNullOrEmpty(secondRow[currentIndex].Name))
@@ -164,7 +163,7 @@ namespace ClassLibraryComponentsKurmyza
                 }
                 else
                 {
-                    topCurrentCell.MergeDown = 1;
+                    highCurrentCell.MergeDown = 1;
                 }
             }
             return true;
@@ -176,7 +175,6 @@ namespace ClassLibraryComponentsKurmyza
         /// <typeparam name="T"></typeparam>
         /// <param name="tablePdfParameters">Параметры таблицы</param>
         /// <returns>Результат создания документа</returns>
-        [System.Obsolete]
         public bool CreateDocument<T>(TablePdfParameters<T> tablePdfParameters) where T : class
         {
             if (!InputValidation(tablePdfParameters))
@@ -216,8 +214,12 @@ namespace ClassLibraryComponentsKurmyza
                         _errorMessage = ErrorTablePdfMessage.Неверно_указано_название_свойства_для_колонки;
                         return false;
                     }
-                    var columnIndex = _propertyInfos[prop.Name];
-                    newRow.Cells[columnIndex].AddParagraph(prop.GetValue(data, null)?.ToString());
+
+                    if (_propertyInfos.ContainsKey(prop.Name))
+                    {
+                        var columnIndex = _propertyInfos[prop.Name];
+                        newRow.Cells[columnIndex].AddParagraph(prop.GetValue(data, null)?.ToString());
+                    }
                 }
             }
 

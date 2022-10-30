@@ -33,14 +33,9 @@ namespace ClassLibraryControlsKurmyza
             }
             set
             {
-                if (!Regex.IsMatch(value, Pattern))
-                {
-                    throw new ArgumentException();
-                }
                 textBoxPhoneNumber.Text = value;
             }
         }
-
         public ControlInputRegexPhoneNumber()
         {
             InitializeComponent();

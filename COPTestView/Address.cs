@@ -1,4 +1,4 @@
-﻿namespace ControlsView
+﻿namespace COPTestView
 {
     public class Address
     {

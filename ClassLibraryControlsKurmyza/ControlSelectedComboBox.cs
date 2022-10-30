@@ -26,21 +26,6 @@ namespace ClassLibraryControlsKurmyza
             comboBox.Text = string.Empty;
         }
 
-        /// <summary>
-        /// Метод добавления элемента в список comboBox. Если добавляемый элемент уже существует, он выделяется.
-        /// </summary>
-        public void AddItem(string item)
-        {
-            if (comboBox.Items.Contains(item))
-            {
-                comboBox.SelectedItem = item;
-            }
-            else
-            {
-                comboBox.Items.Add(item);
-            }
-        }
-
         [Category("Свойства comboBox"), Description("Выбранный элемент")]
         public string SelectedItem
         {

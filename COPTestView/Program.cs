@@ -1,8 +1,7 @@
-﻿using COPTestView;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
-namespace ControlsView
+namespace COPTestView
 {
     static class Program
     {

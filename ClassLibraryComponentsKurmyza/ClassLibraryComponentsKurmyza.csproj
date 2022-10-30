@@ -59,11 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentTextPdf.cs">
+    <Compile Include="ComponentContextBigText.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ComponentTextPdf.Designer.cs">
-      <DependentUpon>ComponentTextPdf.cs</DependentUpon>
+    <Compile Include="ComponentContextBigText.Designer.cs">
+      <DependentUpon>ComponentContextBigText.cs</DependentUpon>
     </Compile>
     <Compile Include="ComponentDiagramPdf.cs">
       <SubType>Component</SubType>

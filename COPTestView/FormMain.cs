@@ -3,7 +3,7 @@ using System;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace ControlsView
+namespace COPTestView
 {
     public partial class FormMain : Form
     {
@@ -18,15 +18,15 @@ namespace ControlsView
 
         private Address[] addresses = {
             new Address() {
-                Street = "Октябрьская",
+                Street = "Полбина",
                 NumberHouse = 28
             },
             new Address() {
-                Street = "Минаева",
+                Street = "Терешковой",
                 NumberHouse = 23
             },
             new Address() {
-                Street = "Гончарова",
+                Street = "Магаданская",
                 NumberHouse = 17
             }
         };
@@ -70,7 +70,7 @@ namespace ControlsView
                 MessageBox.Show("Введите название элемента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            controlSelectedComboBoxTest.AddItem(addElement);
+            controlSelectedComboBoxTest.Items.Add(addElement);
             textBoxAdd.Text = string.Empty;
         }
 

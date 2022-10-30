@@ -2,6 +2,7 @@
 using ClassLibraryComponentsKurmyza.HelperModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace COPTestView
@@ -9,35 +10,32 @@ namespace COPTestView
     public partial class FormWorkWithComponents : Form
     {
         private readonly string[] _defaultText = {
-            "По заданию будет 3 не визуальных компонента, которые должны использоваться на формах.",
-            "Все компоненты отвечают за создание документов разного формата (word, excel или pdf)."
+            "Стартовый текст для проверки работоспособности.",
+            "Абзац кончается там, где стоит знак точки."
         };
 
-        private readonly List<CellPdfTable> rowTablePdfOne;
-        
-        private readonly List<CellPdfTable> rowTablePdfTwo;
-        
-        private readonly List<Employee> employees;
+        private List<CellPdfTable> rowTablePdfOne;
+        private List<CellPdfTable> rowTablePdfTwo;
+        private List<Employee> employees;
 
         public FormWorkWithComponents()
         {
             InitializeComponent();
-            textBoxContextText.Text = string.Join("\n", _defaultText);
+            textBoxContextText.Text = string.Concat(_defaultText);
 
             employees = new List<Employee>
             {
-                new Employee()
-                {
-                    Id = 1,
-                    Status = false,
-                    FirstName = "Иван",
-                    SecondName = "Иванов",
-                    Age = 34,
-                    Children = false,
-                    Car = true,
-                    Subdivision = "Департамент",
-                    Position = "Инженер",
-                    Prize = 2000.1
+                new Employee(){
+                Id = 1,
+                Status = false,
+                FirstName = "Иван",
+                SecondName = "Иванов",
+                Age = 34,
+                Children = false,
+                Car = true,
+                Subdivision = "Департамент",
+                Position = "Инженер",
+                Prize = 2000.1
                 },
                 new Employee()
                 {
@@ -96,7 +94,7 @@ namespace COPTestView
             {
                 new CellPdfTable()
                 {
-                    Name = "Идент.",
+                    Name = "Id",
                     ColumnWidth = "1cm",
                     PropertyName = "Id"
                 },
@@ -167,7 +165,6 @@ namespace COPTestView
             };
         }
 
-        [Obsolete]
         private void buttonCreatePdfContext_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxContextTitle.Text) || string.IsNullOrEmpty(textBoxContextText.Text))
@@ -176,18 +173,16 @@ namespace COPTestView
                 return;
             }
 
-            var fbd = new SaveFileDialog
-            {
-                FileName = "text.pdf",
-                Filter = "pdf file | *.pdf"
-            };
+            var fbd = new SaveFileDialog();
+            fbd.FileName = "pdfContent.pdf";
+            fbd.Filter = "pdf file | *.pdf";
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 if (componentContextBigText.CreateDocument(new ContentParameters()
                 {
                     Path = fbd.FileName,
                     Title = textBoxContextTitle.Text,
-                    ArrayText = textBoxContextText.Text.Split('.')
+                    ArrayText = textBoxContextText.Text.Split('.').ToList()
                 }))
                 {
                     MessageBox.Show("Файл был создан успешно", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -199,7 +194,7 @@ namespace COPTestView
             }
         }
 
-        [Obsolete]
+
         private void buttonCreateTablePdf_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxTableTitle.Text))
@@ -207,11 +202,9 @@ namespace COPTestView
                 MessageBox.Show("Введите заголовок", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var fbd = new SaveFileDialog
-            {
-                FileName = "table.pdf",
-                Filter = "pdf file | *.pdf"
-            };
+            var fbd = new SaveFileDialog();
+            fbd.FileName = "pdfTable.pdf";
+            fbd.Filter = "pdf file | *.pdf";
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 if (componentTablePdf.CreateDocument(new TablePdfParameters<Employee>()
@@ -234,7 +227,6 @@ namespace COPTestView
             }
         }
 
-        [Obsolete]
         private void buttonCreateDiagramPdf_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxDiagramPdfDocTitle.Text) || string.IsNullOrEmpty(textBoxDiagramPdfDiagramName.Text))
@@ -242,11 +234,9 @@ namespace COPTestView
                 MessageBox.Show("Введите заголовоки документа и диаграммы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var fbd = new SaveFileDialog
-            {
-                FileName = "diagram.pdf",
-                Filter = "pdf file | *.pdf"
-            };
+            var fbd = new SaveFileDialog();
+            fbd.FileName = "pdfDiagram.pdf";
+            fbd.Filter = "pdf file | *.pdf";
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 if (componentDiagramPdf.CreateDocument(new DiagramPdfParameters
@@ -254,7 +244,7 @@ namespace COPTestView
                     Path = fbd.FileName,
                     Title = textBoxDiagramPdfDocTitle.Text,
                     DiagramName = textBoxDiagramPdfDiagramName.Text,
-                    ChartAreaLegend = ChartAreaLegend.Top,
+                    ChartAreaLegend = ChartAreaLegend.Bottom,
                     XAxisValues = new[] { "1", "2", "3", "4", "5" },
                     Series = new List<Series>
                     {

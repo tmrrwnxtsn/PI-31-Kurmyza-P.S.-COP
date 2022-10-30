@@ -77,7 +77,6 @@ namespace ClassLibraryComponentsKurmyza
         /// </summary>
         /// <param name="parameters">Параметры диаграммы</param>
         /// <returns>Результат создания документа</returns>
-        [Obsolete]
         public bool CreateDocument(DiagramPdfParameters parameters)
         {
             if (!InputValidation(parameters))
