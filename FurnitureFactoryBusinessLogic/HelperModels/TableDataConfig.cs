@@ -1,4 +1,4 @@
-﻿using FurnitureFactoryBusinessLogic.ViewModels;
+﻿using FurnitureFactoryDatabaseImplement.ViewModels;
 using System.Collections.Generic;
 
 namespace FurnitureFactoryBusinessLogic.HelperModels

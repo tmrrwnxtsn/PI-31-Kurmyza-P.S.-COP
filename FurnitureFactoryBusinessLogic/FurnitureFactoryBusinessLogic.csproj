@@ -44,19 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BindingModels\OrganizationTypeBindingModel.cs" />
-    <Compile Include="BindingModels\SupplierBindingModel.cs" />
     <Compile Include="BusinessLogics\OrganizationTypeLogic.cs" />
     <Compile Include="BusinessLogics\ReportLogic.cs" />
     <Compile Include="BusinessLogics\SupplierLogic.cs" />
     <Compile Include="HelperModels\SupplierStringModel.cs" />
     <Compile Include="HelperModels\TableDataConfig.cs" />
-    <Compile Include="Interfaces\IOrganizationTypeStorage.cs" />
-    <Compile Include="Interfaces\ISupplierStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\OrganizationTypeViewModel.cs" />
-    <Compile Include="ViewModels\SupplierViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FurnitureFactoryDatabaseImplement\FurnitureFactoryDatabaseImplement.csproj">
+      <Project>{a88a7f0d-4b0c-4ac5-a339-1af1d57ec7d1}</Project>
+      <Name>FurnitureFactoryDatabaseImplement</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

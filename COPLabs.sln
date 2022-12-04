@@ -12,11 +12,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryBusinessLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryDatabaseImplement", "FurnitureFactoryDatabaseImplement\FurnitureFactoryDatabaseImplement.csproj", "{A88A7F0D-4B0C-4AC5-A339-1AF1D57EC7D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryView", "FurnitureFactoryView\FurnitureFactoryView.csproj", "{5B47BB6C-380B-4862-80D7-1329DFE68F37}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryComponentsKurmyza", "ClassLibraryComponentsKurmyza\ClassLibraryComponentsKurmyza.csproj", "{2EBB7D11-F4AA-45AB-AC40-292F34CC5513}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryControlsKurmyza", "ClassLibraryControlsKurmyza\ClassLibraryControlsKurmyza.csproj", "{822E1AE8-95BC-4EF0-AB55-2B39C7B50B4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryReportPlugin", "FurnitureFactoryReportPlugin\FurnitureFactoryReportPlugin.csproj", "{5B47BB6C-380B-4862-80D7-1329DFE68F37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFactoryView", "FurnitureFactoryView\FurnitureFactoryView.csproj", "{5B4F61E4-20D9-43B4-918C-4983FB92AA84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginConventionTools", "PluginConventionTools\PluginConventionTools.csproj", "{F990F4B6-04DA-4742-B24D-1915E4026A68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +40,6 @@ Global
 		{A88A7F0D-4B0C-4AC5-A339-1AF1D57EC7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A88A7F0D-4B0C-4AC5-A339-1AF1D57EC7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A88A7F0D-4B0C-4AC5-A339-1AF1D57EC7D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2EBB7D11-F4AA-45AB-AC40-292F34CC5513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2EBB7D11-F4AA-45AB-AC40-292F34CC5513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EBB7D11-F4AA-45AB-AC40-292F34CC5513}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,6 +48,18 @@ Global
 		{822E1AE8-95BC-4EF0-AB55-2B39C7B50B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{822E1AE8-95BC-4EF0-AB55-2B39C7B50B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{822E1AE8-95BC-4EF0-AB55-2B39C7B50B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B47BB6C-380B-4862-80D7-1329DFE68F37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4F61E4-20D9-43B4-918C-4983FB92AA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4F61E4-20D9-43B4-918C-4983FB92AA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4F61E4-20D9-43B4-918C-4983FB92AA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4F61E4-20D9-43B4-918C-4983FB92AA84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F990F4B6-04DA-4742-B24D-1915E4026A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F990F4B6-04DA-4742-B24D-1915E4026A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F990F4B6-04DA-4742-B24D-1915E4026A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F990F4B6-04DA-4742-B24D-1915E4026A68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

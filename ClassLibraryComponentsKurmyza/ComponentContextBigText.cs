@@ -59,6 +59,7 @@ namespace ClassLibraryComponentsKurmyza
         /// </summary>
         /// <param name="parameters">Параметры контента</param>
         /// <returns>Результат создания документа</returns>
+        [System.Obsolete]
         public bool CreateDocument(ContentParameters parameters)
         {
             if (!InputValidation(parameters))

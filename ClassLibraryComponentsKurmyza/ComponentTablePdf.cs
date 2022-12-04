@@ -175,6 +175,7 @@ namespace ClassLibraryComponentsKurmyza
         /// <typeparam name="T"></typeparam>
         /// <param name="tablePdfParameters">Параметры таблицы</param>
         /// <returns>Результат создания документа</returns>
+        [System.Obsolete]
         public bool CreateDocument<T>(TablePdfParameters<T> tablePdfParameters) where T : class
         {
             if (!InputValidation(tablePdfParameters))

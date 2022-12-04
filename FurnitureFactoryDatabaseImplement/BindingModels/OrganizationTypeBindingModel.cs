@@ -1,4 +1,4 @@
-﻿namespace FurnitureFactoryBusinessLogic.BindingModels
+﻿namespace FurnitureFactoryDatabaseImplement.BindingModels
 {
     public class OrganizationTypeBindingModel
     {

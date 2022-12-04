@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FurnitureFactoryBusinessLogic.BindingModels
+namespace FurnitureFactoryDatabaseImplement.BindingModels
 {
     public class SupplierBindingModel
     {

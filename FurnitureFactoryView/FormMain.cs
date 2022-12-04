@@ -1,246 +1,222 @@
-﻿using ClassLibraryComponentsKurmyza.HelperModels;
-using ComponentLibrary.models;
-using FurnitureFactoryBusinessLogic.BindingModels;
-using FurnitureFactoryBusinessLogic.BusinessLogics;
-using FurnitureFactoryBusinessLogic.HelperModels;
-using FurnitureFactoryBusinessLogic.ViewModels;
+﻿using PluginConventionTools.Interfaces;
+using PluginConventionTools.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
-using WindowsFormsComponentLibrary.Models;
-using WindowsFormsComponentsAbanin;
 
 namespace FurnitureFactoryView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly SupplierLogic _supplierLogic;
-        private readonly ReportLogic _reportLogic;
-
-        public FormMain(SupplierLogic supplierLogic, ReportLogic reportLogic)
+        private readonly Dictionary<string, IPluginsConvention> _plugins;
+        
+        private string _selectedPlugin;
+        
+        public FormMain()
         {
             InitializeComponent();
-            _supplierLogic = supplierLogic;
-            _reportLogic = reportLogic;
+            _plugins = LoadPlugins();
+            _selectedPlugin = string.Empty;
+
+
+            panelControl.ContextMenuStrip = contextMenuStrip1;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private Dictionary<string, IPluginsConvention> LoadPlugins()
         {
-            LoadData();
-        }
+            // TODO Заполнить IPluginsConvention
+            // TODO Заполнить пункт меню "Справочники" на основе IPluginsConvention.PluginName
+            // TODO Например, создавать ToolStripMenuItem, привязывать к ним обработку событий и добавлять в menuStrip
+            // TODO При выборе пункта меню получать UserControl и заполнять элемент  panelControl этим контролом на всю площадь
+            // Пример: panelControl.Controls.Clear(); panelControl.Controls.Add(ctrl);
+            
+            PluginManager manager = new PluginManager();
 
-        private void LoadData()
-        {
-            this.Controls.Remove(treeUserControl);
-            treeUserControl = new TreeUserControl
-            {
-                Dock = DockStyle.Fill
-            };
-            this.Controls.Add(treeUserControl);
-            treeUserControl.SetHierarchy(new List<string> { "OrganizationType", "LastDelivery", "Id", "Name" });
+            Dictionary<string, IPluginsConvention> dic = manager.plugins_dictionary;
 
-            try
+            ToolStripItem[] toolStripItems = new ToolStripItem[dic.Count];
+            int i = 0;
+            foreach (var item in dic)
             {
-                var list = _supplierLogic.Read(null);
-                foreach (var supplier in list)
+                ToolStripMenuItem itemMenu = new ToolStripMenuItem();
+                itemMenu.Text = item.Value.PluginName;
+                itemMenu.Click += (sender, e) =>
                 {
-                    treeUserControl.AddItem(supplier, "Name");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
-            }
-        }
-
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            base.OnKeyDown(e);
-            if (e.Control)
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.A:
-                        {
-                            AddSupplier(null, null);
-                            break;
-                        }
-                    case Keys.U:
-                        {
-                            UpdateSupplier(null, null);
-
-                            break;
-                        }
-                    case Keys.D:
-                        {
-                            DeleteSupplier(null, null);
-                            break;
-                        }
-                    case Keys.S:
-                        {
-                            CreateSimpleDocument(null, null);
-                            break;
-                        }
-                    case Keys.T:
-                        {
-                            CreateDocumentTable(null, null);
-                            break;
-                        }
-                    case Keys.C:
-                        {
-                            CreateDocumentChart(null, null);
-                            break;
-                        }
-                    case Keys.O:
-                        {
-                            CallOrganizationTypesForm(null, null);
-                            break;
-                        }
-                }
-            }
-        }
-
-        private void AddSupplier(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormSupplier>();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                LoadData();
-            }
-        }
-        private void UpdateSupplier(object sender, EventArgs e)
-        {
-            var selectedItem = treeUserControl.GetSelectedItem<SupplierStringModel>();
-            if (selectedItem is null || string.IsNullOrEmpty(selectedItem.Name) || selectedItem.Id is null) return;
-            var form = Container.Resolve<FormSupplier>();
-            form.SupplierStringModel = selectedItem;
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                LoadData();
-            }
-        }
-        private void DeleteSupplier(object sender, EventArgs e)
-        {
-            var selectedItem = treeUserControl.GetSelectedItem<SupplierStringModel>();
-            if (selectedItem is null || string.IsNullOrEmpty(selectedItem.Name) || selectedItem.Id is null) return;
-
-            if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                int id = Convert.ToInt32(treeUserControl.GetSelectedItem<SupplierStringModel>()?.Id);
-                try
-                {
-                    _supplierLogic.Delete(new SupplierBindingModel() { Id = id });
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                LoadData();
+                    _selectedPlugin = item.Value.PluginName;
+                    panelControl.Controls.Clear();
+                    panelControl.Controls.Add(_plugins[_selectedPlugin].GetControl);
+                    panelControl.Controls[0].Dock = DockStyle.Fill;
+                };
+                toolStripItems[i] = itemMenu;
+                i++;
             }
 
+            ControlsStripMenuItem.DropDownItems.AddRange(toolStripItems);
+            return dic;
+
         }
 
-        private void CreateSimpleDocument(object sender, EventArgs e)
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
         {
-            var fbd = new SaveFileDialog();
-            fbd.FileName = "pdfContent.pdf";
-            fbd.Filter = "pdf file | *.pdf";
-            if (fbd.ShowDialog() == DialogResult.OK)
+            if (string.IsNullOrEmpty(_selectedPlugin) ||
+           !_plugins.ContainsKey(_selectedPlugin))
             {
-                if (string.IsNullOrEmpty(fbd.FileName))
-                    MessageBox.Show("Путь не указан", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (componentContextBigText.CreateDocument(new ContentParameters()
+                return;
+            }
+            if (!e.Control)
+            {
+                return;
+            }
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                    AddNewElement();
+                    break;
+                case Keys.U:
+                    UpdateElement();
+                    break;
+                case Keys.D:
+                    DeleteElement();
+                    break;
+                case Keys.S:
+                    CreateSimpleDoc();
+                    break;
+                case Keys.T:
+                    CreateTableDoc();
+                    break;
+                case Keys.C:
+                    CreateChartDoc();
+                    break;
+            }
+        }
+        private void AddNewElement()
+        {
+            var form = _plugins[_selectedPlugin].GetForm(null);
+            if (form != null && form.ShowDialog() == DialogResult.OK)
+            {
+                _plugins[_selectedPlugin].ReloadData();
+            }
+        }
+        private void UpdateElement()
+        {
+            var element = _plugins[_selectedPlugin].GetElement;
+            if (element == null)
+            {
+                MessageBox.Show("Нет выбранного элемента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var form = _plugins[_selectedPlugin].GetForm(element);
+            if (form != null && form.ShowDialog() == DialogResult.OK)
+            {
+                _plugins[_selectedPlugin].ReloadData();
+            }
+        }
+        private void DeleteElement()
+        {
+            if (MessageBox.Show("Удалить выбранный элемент", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+            var element = _plugins[_selectedPlugin].GetElement;
+            if (element == null)
+            {
+                MessageBox.Show("Нет выбранного элемента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (_plugins[_selectedPlugin].DeleteElement(element))
+            {
+                _plugins[_selectedPlugin].ReloadData();
+            }
+        }
+        private void CreateSimpleDoc()
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateSimpleDocument(
+                    new PluginsConventionSaveDocument()
+                    {
+                        FileName = dialog.FileName
+                    }))
                 {
-                    Path = fbd.FileName,
-                    Title = "Отчет по поставщикам в этом году",
-                    ArrayText = _reportLogic.GetArraySupplierWithManufacturedFurnitureForYear()
-                }))
-                {
-                    MessageBox.Show("Файл был создан успешно", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Документ сохранен", "Создание документа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(componentContextBigText.ErrorMessageString, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ошибка при создании документа", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
-        private void CreateDocumentTable(object sender, EventArgs e)
+        private void CreateTableDoc()
         {
-            var fbd = new SaveFileDialog();
-            fbd.FileName = "excelTable.xls";
-            fbd.Filter = "xls file | *.xls";
-            if (fbd.ShowDialog() == DialogResult.OK)
+            using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
             {
-                if (string.IsNullOrEmpty(fbd.FileName))
-                    MessageBox.Show("Путь не указан", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                try
+                if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateTableDocument(new
+                    PluginsConventionSaveDocument()
                 {
-                    var tableDataConfig = _reportLogic.GetSupplierForTable();
-                    if (componentExcelTable.CreateDoc(new ExcelTableConfig<SupplierViewModel>
-                    {
-                        FileName = fbd.FileName,
-                        Data = tableDataConfig.Data,
-                        Headers = tableDataConfig.Headers,
-                        RowsHeight = tableDataConfig.RowsHeight,
-                        Title = "Отчет по поставщикам",
-                        PropertiesOrder = tableDataConfig.PropertiesOrder,
-                        ColumnsWidth = tableDataConfig.ColumnsWidth
-
-                    }))
-                    {
-                        MessageBox.Show("Файл был создан успешно", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show(componentContextBigText.ErrorMessageString, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    FileName = dialog.FileName
+                }))
+                {
+                    MessageBox.Show("Документ сохранен", "Создание документа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception exception)
+                else
                 {
-                    MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ошибка при создании документа", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
-        private void CreateDocumentChart(object sender, EventArgs e)
+        private void CreateChartDoc()
         {
-            var fbd = new SaveFileDialog();
-            fbd.FileName = "wordChart.docx";
-            fbd.Filter = "docx file | *.docx";
-            if (fbd.ShowDialog() == DialogResult.OK)
+            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xls" })
             {
-                if (string.IsNullOrEmpty(fbd.FileName))
-                    MessageBox.Show("Путь не указан", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                try
+                if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateChartDocument(new
+                    PluginsConventionSaveDocument()
                 {
-                    var list = _reportLogic.GetListSuppliersCount();
-                    docWithDiagram.GenerateDoc(new DiagramInfo
-                    {
-                        ChartHeader = "Типы организаций и количество",
-                        Header = "Отчет по поставщикам в разрезе типов организации за год",
-                        FilePath = fbd.FileName,
-                        Items = list
-                    });
-                    MessageBox.Show("Файл был создан успешно", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FileName = dialog.FileName
+                }))
+                {
+                    MessageBox.Show("Документ сохранен", "Создание документа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception exception)
+                else
                 {
-                    MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ошибка при создании документа", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+        private void AddElementToolStripMenuItem_Click(object sender, EventArgs e) => AddNewElement();
+        private void UpdElementToolStripMenuItem_Click(object sender, EventArgs e) => UpdateElement();
+        private void DelElementToolStripMenuItem_Click(object sender, EventArgs e) => DeleteElement();
+        private void SimpleDocToolStripMenuItem_Click(object sender, EventArgs e) => CreateSimpleDoc();
+        private void TableDocToolStripMenuItem_Click(object sender, EventArgs e) => CreateTableDoc();
+        private void ChartDocToolStripMenuItem_Click(object sender, EventArgs e) => CreateChartDoc();
 
-        private void CallOrganizationTypesForm(object sender, EventArgs e)
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormOrganizationTypes>();
-            form.ShowDialog();
+            AddNewElement();
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateElement();
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteElement();
+        }
+
+        private void простойДокументToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateSimpleDoc();
+        }
+
+        private void документСТаблицейToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateTableDoc();
+        }
+
+        private void диаграммаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateChartDoc();
         }
     }
 }

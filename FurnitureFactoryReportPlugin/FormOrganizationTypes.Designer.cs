@@ -1,5 +1,7 @@
-﻿
-namespace FurnitureFactoryView
+﻿using System;
+using System.Windows.Forms;
+
+namespace FurnitureFactoryReportPlugin
 {
     partial class FormOrganizationTypes
     {

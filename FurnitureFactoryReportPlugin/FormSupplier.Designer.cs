@@ -1,5 +1,5 @@
 ﻿
-namespace FurnitureFactoryView
+namespace FurnitureFactoryReportPlugin
 {
     partial class FormSupplier
     {

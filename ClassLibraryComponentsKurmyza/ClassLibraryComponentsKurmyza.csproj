@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2EBB7D11-F4AA-45AB-AC40-292F34CC5513}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ClassLibraryComponentsFilippov</RootNamespace>
-    <AssemblyName>ClassLibraryComponentsFilippov</AssemblyName>
+    <RootNamespace>ClassLibraryComponentsKurmyza</RootNamespace>
+    <AssemblyName>ClassLibraryComponentsKurmyza</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

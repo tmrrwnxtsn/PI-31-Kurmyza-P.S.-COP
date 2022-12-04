@@ -1,28 +1,23 @@
-﻿using FurnitureFactoryBusinessLogic.BindingModels;
-using FurnitureFactoryBusinessLogic.BusinessLogics;
+﻿using FurnitureFactoryBusinessLogic.BusinessLogics;
 using FurnitureFactoryBusinessLogic.HelperModels;
+using FurnitureFactoryDatabaseImplement.BindingModels;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using Unity;
 
-namespace FurnitureFactoryView
+namespace FurnitureFactoryReportPlugin
 {
     public partial class FormSupplier : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public SupplierStringModel SupplierStringModel { set => _view = value; }
-        private readonly SupplierLogic _logic;
-        private readonly OrganizationTypeLogic _organizationTypeLogic;
+        private readonly SupplierLogic _logic = new SupplierLogic();
+        private readonly OrganizationTypeLogic _organizationTypeLogic = new OrganizationTypeLogic();
         private SupplierStringModel _view;
         private CheckDataChange _checkDataChange;
         private bool Save { get; set; } = false;
 
-        public FormSupplier(SupplierLogic supplierLogic, SupplierLogic logic, OrganizationTypeLogic organizationTypeLogic)
+        public FormSupplier()
         {
-            this._logic = logic;
-            _organizationTypeLogic = organizationTypeLogic;
             _checkDataChange = new CheckDataChange();
             InitializeComponent();
         }

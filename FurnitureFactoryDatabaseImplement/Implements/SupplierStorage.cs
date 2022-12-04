@@ -1,14 +1,13 @@
-﻿using FurnitureFactoryBusinessLogic.BindingModels;
-using FurnitureFactoryBusinessLogic.Interfaces;
-using FurnitureFactoryBusinessLogic.ViewModels;
+﻿using FurnitureFactoryDatabaseImplement.BindingModels;
 using FurnitureFactoryDatabaseImplement.Models;
+using FurnitureFactoryDatabaseImplement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FurnitureFactoryDatabaseImplement.Implements
 {
-    public class SupplierStorage : ISupplierStorage
+    public class SupplierStorage
     {
         public List<SupplierViewModel> GetFullList()
         {

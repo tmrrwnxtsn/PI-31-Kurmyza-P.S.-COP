@@ -1,6 +1,6 @@
-﻿using FurnitureFactoryBusinessLogic.BindingModels;
-using FurnitureFactoryBusinessLogic.Interfaces;
-using FurnitureFactoryBusinessLogic.ViewModels;
+﻿using FurnitureFactoryDatabaseImplement.BindingModels;
+using FurnitureFactoryDatabaseImplement.Implements;
+using FurnitureFactoryDatabaseImplement.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -8,12 +8,9 @@ namespace FurnitureFactoryBusinessLogic.BusinessLogics
 {
     public class OrganizationTypeLogic
     {
-        private readonly IOrganizationTypeStorage _organizationTypeStorage;
+        private readonly OrganizationTypeStorage _organizationTypeStorage = new OrganizationTypeStorage();
 
-        public OrganizationTypeLogic(IOrganizationTypeStorage organizationTypeStorage)
-        {
-            _organizationTypeStorage = organizationTypeStorage;
-        }
+        public OrganizationTypeLogic() {}
 
         public List<OrganizationTypeViewModel> Read(OrganizationTypeBindingModel model)
         {

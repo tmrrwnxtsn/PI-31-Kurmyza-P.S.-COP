@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace FurnitureFactoryBusinessLogic.ViewModels
+namespace FurnitureFactoryDatabaseImplement.ViewModels
 {
     public class OrganizationTypeViewModel
     {

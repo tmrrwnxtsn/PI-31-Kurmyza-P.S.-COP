@@ -1,7 +1,7 @@
 ﻿using ComponentLibrary.models;
-using FurnitureFactoryBusinessLogic.BindingModels;
 using FurnitureFactoryBusinessLogic.HelperModels;
-using FurnitureFactoryBusinessLogic.Interfaces;
+using FurnitureFactoryDatabaseImplement.BindingModels;
+using FurnitureFactoryDatabaseImplement.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,9 @@ namespace FurnitureFactoryBusinessLogic.BusinessLogics
 {
     public class ReportLogic
     {
-        private readonly ISupplierStorage _supplierStorage;
-        private readonly IOrganizationTypeStorage _organizationTypeStorage;
+        private readonly SupplierStorage _supplierStorage = new SupplierStorage();
 
-        public ReportLogic(ISupplierStorage supplierStorage, IOrganizationTypeStorage organizationTypeStorage)
-        {
-            _supplierStorage = supplierStorage;
-            _organizationTypeStorage = organizationTypeStorage;
-        }
+        public ReportLogic() {}
 
         public List<string> GetArraySupplierWithManufacturedFurnitureForYear()
         {

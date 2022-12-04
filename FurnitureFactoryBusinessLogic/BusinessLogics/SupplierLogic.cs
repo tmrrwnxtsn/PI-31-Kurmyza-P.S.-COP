@@ -1,6 +1,6 @@
-﻿using FurnitureFactoryBusinessLogic.BindingModels;
-using FurnitureFactoryBusinessLogic.Interfaces;
-using FurnitureFactoryBusinessLogic.ViewModels;
+﻿using FurnitureFactoryDatabaseImplement.BindingModels;
+using FurnitureFactoryDatabaseImplement.Implements;
+using FurnitureFactoryDatabaseImplement.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -8,12 +8,9 @@ namespace FurnitureFactoryBusinessLogic.BusinessLogics
 {
     public class SupplierLogic
     {
-        private readonly ISupplierStorage _supplierStorage;
+        private readonly SupplierStorage _supplierStorage = new SupplierStorage();
 
-        public SupplierLogic(ISupplierStorage supplierStorage)
-        {
-            _supplierStorage = supplierStorage;
-        }
+        public SupplierLogic() {}
 
         public List<SupplierViewModel> Read(SupplierBindingModel model)
         {

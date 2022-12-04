@@ -1,19 +1,16 @@
-﻿using FurnitureFactoryBusinessLogic.BindingModels;
-using FurnitureFactoryBusinessLogic.BusinessLogics;
+﻿using FurnitureFactoryBusinessLogic.BusinessLogics;
+using FurnitureFactoryDatabaseImplement.BindingModels;
 using System;
 using System.Windows.Forms;
-using Unity;
 
-namespace FurnitureFactoryView
+namespace FurnitureFactoryReportPlugin
 {
     public partial class FormOrganizationTypes : Form
     {
-        [Dependency] public new IUnityContainer Container { get; set; }
-        private readonly OrganizationTypeLogic _logic;
+        private OrganizationTypeLogic _logic = new OrganizationTypeLogic();
 
-        public FormOrganizationTypes(OrganizationTypeLogic logic)
+        public FormOrganizationTypes()
         {
-            _logic = logic;
             InitializeComponent();
         }
 
